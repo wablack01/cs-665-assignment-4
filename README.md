@@ -1,16 +1,18 @@
 
 | CS-665       | Software Design & Patterns |
 |--------------|----------------------------|
-| Name         | FIRST_NAME LAST_NAME       |
-| Date         | MM/DD/YYYY                 |
-| Course       | Fall / Spring / Summer     |
-| Assignment # |                            |
+| Name         | Walker Black               |
+| Date         | 03/21/2024                 |
+| Course       | Spring                     |
+| Assignment # | 4                          |
 
 # Assignment Overview
-Please add a paragraph or two overviewing the objectives of the assignment.
+The purpose of this application is to implement a legacy USB system and a more modern HTTPS system for accessing
+customer data. Additionally, an adapter class is implemented that makes the modern HTTPS interface compatible
+with the legacy USB system's API. This ensures seamless upgrades to any components relying on the legacy system.
 
 # GitHub Repository Link:
-https://github.com/{YOUR_USERNAME}/cs-665-assignment-{ASSIGNMENT_NUMBER}
+https://github.com/wablack01/cs-665-assignment-4
 
 # Implementation Description 
 
@@ -19,11 +21,26 @@ For each assignment, please answer the following:
 
 - Explain the level of flexibility in your implementation, including how new object types can
 be easily added or removed in the future.
+  - I created UsbCustomerDataRepository and HttpsCustomerDataRepository classes which implement CustomerData_USB and
+  CustomerData_HTTPS interfaces respectively. The classes provide data storage mechanisms for customer data (in this 
+  case represented with HashMaps). The UsbToHttpsAdapter class implements the CustomerData_USB interface and rewires
+  its function calls to the approporiate CustomerData_HTTPS implementation held as a reference. Because the client only
+  references the interfaces implementations can easily be changed in the future.
 - Discuss the simplicity and understandability of your implementation, ensuring that it is
 easy for others to read and maintain.
+  - The classes are organized in packages based on utility and function names are clearly named based
+  on their purpose. The client class reference only interfaces for easier maintainability. Code is thoroughly
+  commented as well.
 - Describe how you have avoided duplicated code and why it is important.
+  - Relying on interfaces in the client and adapter classes ensures existing code will work with different
+  implementations.
 - If applicable, mention any design patterns you have used and explain why they were
 chosen.
+  - I implemented the Adapter Pattern for this implementation. The application required integration of the legacy USB
+  interface with the modern HTTPS and that clients relying on the USB system were still compatible with the HTTPS sytem.
+  This was achieved by using an adapter class that implements the legacy interface and rewires it's function calls to
+  the modern interface.
+  new system
 
 
 # Maven Commands
